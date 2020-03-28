@@ -38,4 +38,26 @@ public class ChatDataHistroyController {
         serv.createChatHistoryData(chd);
         return "Chat History Data created successfully!";
     }
+    
+    @GetMapping(value="/read/{chatid}")
+    public Optional<ChatHistoryData> read(@PathVariable(value="chatid") int id) {
+    	logger.debug("Reading ChatHistoryData. ");
+    	System.out.println(id);
+    	return serv.findChatHistoryDataById(id);
+    }
+    
+    @PutMapping(value= "/update/{chatid}")
+    public String update(@PathVariable(value= "chatid") int id, @RequestBody ChatHistoryData c) {
+        logger.debug("Updating ChatHistoryData with id= {}.", id);
+        c.setId(id);
+        serv.updateChatHistoryData(c);
+        return "Chat History Data record for id= " + id + " updated.";
+    }
+    
+    @DeleteMapping(value= "/delete/{chatid}")
+    public String delete(@PathVariable(value= "chatid") int id) {
+        logger.debug("Deleting Chat History Data with id= {}.", id);
+        serv.deleteChatHistoryDataById(id);
+        return "Chat History Data record for id= " + id + " deleted.";
+    }
 }

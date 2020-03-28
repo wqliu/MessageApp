@@ -18,4 +18,16 @@ public class ChatHistoryDataService {
     public void createChatHistoryData(List<ChatHistoryData> chd) {
         dao.saveAll(chd);
     }
+    
+    public Optional<ChatHistoryData> findChatHistoryDataById(int id) {
+    	return dao.findById(id);
+    }
+    
+    public void updateChatHistoryData(ChatHistoryData c) {
+    	dao.save(c);
+    }
+    
+    public void deleteChatHistoryDataById(int id) {
+        dao.deleteById(id);
+    }
 }
